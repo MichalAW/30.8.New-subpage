@@ -1,0 +1,27 @@
+{
+  "name": "30.8.New-subpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && npm install",
+    "postinstall": "run-p install:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichalAW/30.8.New-subpage.git"
+  },
+  "keywords": [],
+  "author": "MichalAW michal.wanta@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichalAW/30.8.New-subpage.git/issues"
+  },
+  "homepage": "https://github.com/MichalAW/30.8.New-subpage.git#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "react-router-dom": "5.0.0",
+    "yarn": "^1.17.3"
+  }
+}
