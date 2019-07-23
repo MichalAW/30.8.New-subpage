@@ -6,3 +6,4 @@
 3.Thirdly, our application is intended to be a fairly large blog engine. We assume then that the customer can expect huge traffic on the site. Thus, access to data should be handled by a tool that is fast, efficient and prepared for such tasks. An ordinary board is certainly not the best option here. 
 
 4.Tool that will be perfect for our needs. It's MongoDB with the package Mongoose.
+
