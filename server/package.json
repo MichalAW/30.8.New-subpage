@@ -4,10 +4,7 @@
 	"description": "",
 	"main": "index.html",
 	"scripts": {
-		"start:server": "cd server && yarn start",
-		"install:client": "cd client && npm install",
-		"install:server": "cd server && npm install",
-		"postinstall": "run-p install:*"
+		"start": "nodemon server.js"
 	},
 	"repository": {
 		"type": "git",
