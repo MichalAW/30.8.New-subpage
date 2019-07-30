@@ -34,19 +34,4 @@ Posts.propTypes = {
     loadPosts: PropTypes.func.isRequired,
 };
 
-export function posts(statePart = initialState, action = {}) {
-    switch (action.type) {
-        case PostsList:
-            return  { ...statePart, request: { pending: false, success: true, posts.length > 0 } };
-        case Spinner:
-            return { ...statePart, request: { pending: true, success: null } };
-        case AlertError:
-            return { ...statePart, request: { pending: false, error: null } };
-        case AlertInfo:
-            return { ...statePart, request: { pending: false, success: true, posts.length === 0 } };
-        default:
-            return statePart;
-    }
-};
-
 export default Posts;

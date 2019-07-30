@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types';
 import './PostSummary.scss';
 import Button from '../../common/Button/Button';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
+import HtmlBox from '../../common/HtmlBox/HtmlBox';
+import CutText from '../../../utils/CutText/CutText';
 
 const PostSummary = ({ id, title, content }) => (
     <article className="post-summary">
@@ -24,5 +26,3 @@ export default (content, maxLength) => {
     if (content.length <= maxLength) return content;
     return content.substr(0, content.lastIndexOf(' ', maxLength)) + '...';
 };
-
-export default PostSummary;
