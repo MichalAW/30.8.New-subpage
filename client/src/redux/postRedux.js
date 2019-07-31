@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {API_URL} from '../config';
 
 async function loadUsers() {
-    await showWelcomeSpinner();
-    loading = true;
+    // await showWelcomeSpinner();
+    // loading = true;
     const res = await loadUsers();
-    prepareUsers(res);
-    loading = false;
+    // prepareUsers(res);
+    // loading = false;
 }
 // action name creator
 const reducerName = 'posts';
@@ -48,6 +49,8 @@ export const loadPostsRequest = () => {
 
     };
 };
+
+export const getRequest = ({ posts }) => posts;
 
 // export function posts(statePart = initialState, action = {}) {
 //     switch (action.type) {

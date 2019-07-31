@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AddPost from '../../posts/AddPost';
-import SinglePost from './posts/Single.Post';
+// import AddPost from '../../posts/AddPost';
+// import SinglePost from '../Posts/SinglePost';
 
 class NavBar extends React.Component {
 
