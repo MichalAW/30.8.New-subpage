@@ -1,68 +1,104 @@
 import axios from 'axios';
-import {API_URL} from '../config';
+import { API_URL } from '../config';
 
-async function loadUsers() {
-    // await showWelcomeSpinner();
-    // loading = true;
-    const res = await loadUsers();
-    // prepareUsers(res);
-    // loading = false;
-}
+/* SELECTORS */
+export const getPosts = ({ posts }) => posts.data;
+export const getPostsCounter = ({ posts }) => posts.data.length;
+export const getRequest = ({ posts }) => posts.request;
+export const getSinglePost = ({ posts }) => posts.singlePost;
+
 // action name creator
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
 
-/* INITIAL STATE */
+/* ACTIONS */
+export const CLEAR_POSTS = createActionName('CLEAR_POSTS');
+export const LOAD_POSTS = createActionName('LOAD_POSTS');
+export const LOAD_SINGLE_POST = createActionName('LOAD_SINGLE_POST');
+export const START_REQUEST = createActionName('START_REQUEST');
+export const END_REQUEST = createActionName('END_REQUEST');
+export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
+export const RESET_REQUEST = createActionName('RESET_REQUEST');
+export const clearPosts = () => ({ type: CLEAR_POSTS });
+export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
+export const loadSinglePost = payload => ({ payload, type: LOAD_SINGLE_POST });
+export const startRequest = () => ({ type: START_REQUEST });
+export const endRequest = () => ({ type: END_REQUEST });
+export const errorRequest = error => ({ error, type: ERROR_REQUEST });
+export const resetRequest = () => ({ type: RESET_REQUEST });
 
-const initialState = [];
+/* THUNKS */
+export const loadPostsRequest = () => {
+    return async dispatch => {
+        dispatch(clearPosts());
+        dispatch(startRequest());
+        try {
+            let res = await axios.get(`${API_URL}/posts`);
+            await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+            dispatch(loadPosts(res.data));
+            dispatch(endRequest());
+        } catch(e) {
+            dispatch(errorRequest(e.message));
+        }
+    };
+};
+
+export const loadSinglePostRequest = (id) => {
+    return async dispatch => {
+        dispatch(startRequest());
+        try {
+            let res = await axios.get(`${API_URL}/post/${id}`);
+            await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+            dispatch(loadSinglePost(res.data));
+            dispatch(endRequest());
+        } catch(e) {
+            dispatch(errorRequest(e.message));
+        }
+    };
+};
+
+export const addPostRequest = (post) => {
+    return async dispatch => {
+            dispatch(startRequest());
+        try {
+            let res = await axios.post(`${API_URL}/posts`, post);
+            await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+            dispatch(endRequest());
+        } catch(e) {
+            dispatch(errorRequest(e.message));
+        }
+    };
+};
+
+/* INITIAL STATE */
+const initialState = {
+    data: [],
+    singlePost: null,
+    request: {
+        pending: false,
+        error: null,
+        success: null,
+    },
+};
 
 /* REDUCER */
-
 export default function reducer(statePart = initialState, action = {}) {
     switch (action.type) {
+        case CLEAR_POSTS:
+            return { ...statePart, data: [] };
         case LOAD_POSTS:
-            return [...action.payload];
+            return { ...statePart, data: action.payload };
+        case LOAD_SINGLE_POST:
+            return { ...statePart, singlePost: action.payload };
+        case START_REQUEST:
+            return { ...statePart, request: { pending: true, error: null, success: null } };
+        case END_REQUEST:
+            return { ...statePart, request: { pending: false, error: null, success: true } };
+        case ERROR_REQUEST:
+            return { ...statePart, request: { pending: false, error: action.error, success: false } };
+        case RESET_REQUEST:
+            return { ...statePart, request: initialState.request };
         default:
             return statePart;
     }
 };
-
-export const getPosts = ({ posts }) => posts;
-
-export const LOAD_POSTS = createActionName('LOAD_POSTS');
-
-export const loadPosts = payload => ({
-    payload,
-    type: LOAD_POSTS
-});
-/* THUNKS */
-export const loadPostsRequest = () => {
-    return async dispatch => {
-        try {
-
-        let res = await axios.get(`${API_URL}/posts`);
-        dispatch(loadPosts(res.data));
-
-        } catch(e) {
-        console.log(e.message);
-        }
-
-    };
-};
-
-export const getRequest = ({ posts }) => posts;
-
-// export function posts(statePart = initialState, action = {}) {
-//     switch (action.type) {
-//         case PostsList:
-//             return  { ...statePart, request: { pending: false, success: true, posts.length > 0 } };
-//         case Spinner:
-//             return { ...statePart, request: { pending: true, success: null } };
-//         case AlertError:
-//             return { ...statePart, request: { pending: false, error: null } };
-//         case AlertInfo:
-//             return { ...statePart, request: { pending: false, success: true, posts.length === 0 } };
-//         default:
-//             return statePart;
-//     }
-// };
