@@ -11,14 +11,22 @@ export default ({ id, title, content },maxLength) => {
         if (content.length <= maxLength) return content;
         return content.substr(0, content.lastIndexOf(' ', maxLength)) + '...';
     }
+    
+    const AddTripButton =  () => {
+        this.setState({
+            ...this.state,
+            isEmptyState: false,
+            isAddTripState: true
+        })
+    }
     return (
     <article className="post-summary">
         <SmallTitle>{title}</SmallTitle>
         <HtmlBox>{CutText(test(), 250)}</HtmlBox>
-        <Button variant="primary"> 
+        <Button variant="primary" onClick={this. AddTripButton}> 
             Read more
         </Button>
     </article>
 )};
 
-// REad more dodaąc jeszcze onclick i przeniosi na liste, na singleposta z id na samym koncu /posts/123
+// dodaj jeszcze onclick i przeniosi na liste, na singleposta z id na samym koncu /posts/123
