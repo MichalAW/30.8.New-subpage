@@ -12,18 +12,17 @@ export default ({ id, title, content },maxLength) => {
         return content.substr(0, content.lastIndexOf(' ', maxLength)) + '...';
     }
     
-    const AddTripButton =  () => {
-        this.setState({
-            ...this.state,
-            isEmptyState: false,
-            isAddTripState: true
-        })
+    const AddTripButton = (props) => {
+       handleCLick(e) {
+            e.preventDefault();
+            console.log('The link was clicked.');
+       }
     }
     return (
     <article className="post-summary">
         <SmallTitle>{title}</SmallTitle>
         <HtmlBox>{CutText(test(), 250)}</HtmlBox>
-        <Button variant="primary" onClick={this. AddTripButton}> 
+        <Button variant="primary" onClick={props.AddTripButton}> 
             Read more
         </Button>
     </article>
