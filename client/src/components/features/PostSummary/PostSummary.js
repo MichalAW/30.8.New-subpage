@@ -5,6 +5,8 @@ import Button from '../../common/Button/Button';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import CutText from '../../../utils/CutText/CutText';
+import { Link } from 'react-router-dom';
+import PostsList from '../PostsList/PostsList';
 
 export default ({ id, title, content },maxLength) => { 
     const test =  () => { if (content.length < 1) return 'Error';
@@ -12,18 +14,12 @@ export default ({ id, title, content },maxLength) => {
         return content.substr(0, content.lastIndexOf(' ', maxLength)) + '...';
     }
     
-    const AddTripButton = (props) => {
-       handleCLick(e) {
-            e.preventDefault();
-            console.log('The link was clicked.');
-       }
-    }
     return (
     <article className="post-summary">
         <SmallTitle>{title}</SmallTitle>
         <HtmlBox>{CutText(test(), 250)}</HtmlBox>
-        <Button variant="primary" onClick={props.AddTripButton}> 
-            Read more
+        <Button variant="primary">
+            <Link to={PostsList => ({ ...PostsList, pathname: "../PostSummary/PostSummary" })} /> Read More
         </Button>
     </article>
 )};
