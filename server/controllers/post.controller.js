@@ -12,14 +12,11 @@ const getPosts = async (req, res) => {
 };
 
 const getPostById = async (req, res) => {
-
     try {
-        res.status(200).json(await Post.findOne({_id:req.params.id}));
+        res.status(200).json(await Post.findOne({id:req.params.id}));
     } catch (err) {
         res.status(500).json(err);
     }
-
-
 }
 
-module.exports = {getPosts};
+module.exports = {getPosts, getPostById};

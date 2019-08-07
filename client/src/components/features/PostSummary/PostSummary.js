@@ -19,7 +19,7 @@ export default ({ id, title, content },maxLength) => {
         <SmallTitle>{title}</SmallTitle>
         <HtmlBox>{CutText(test(), 250)}</HtmlBox>
         <Button variant="primary">
-            <Link to={PostsList => ({ ...PostsList, pathname: "../PostSummary/PostSummary" })} /> Read More
+            <Link to={`/posts/${id}`}>Read More</Link> 
         </Button>
     </article>
 )};
