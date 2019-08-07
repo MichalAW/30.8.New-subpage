@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 import PostSummary from '../PostSummary/PostSummary';
 
 const PostsList = ({ posts }) => {
-    console.log()
     return (
     <div>
         <section className="posts-list">
