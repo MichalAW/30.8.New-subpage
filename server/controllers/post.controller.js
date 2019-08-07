@@ -1,10 +1,8 @@
 const Post = require('../models/post.model');
 const uuid = require('uuid');
-// get all posts
-// get all posts
 
 // add new post
-exports.addPost = async function (req, res) {
+const addPost = async function (req, res) {
 
     try {
         const { title, author, content } = req.body;
@@ -18,7 +16,6 @@ exports.addPost = async function (req, res) {
     } catch(err) {
         res.status(500).json(err);
     }
-
 }
 
 const getPosts = async (req, res) => {
@@ -28,7 +25,6 @@ const getPosts = async (req, res) => {
     } catch(err) {
         res.status(500).json(err);
     }
-
 };
 
 const getPostById = async (req, res) => {
@@ -39,4 +35,4 @@ const getPostById = async (req, res) => {
     }
 }
 
-module.exports = {getPosts, getPostById};
+module.exports = {getPosts, getPostById, addPost};

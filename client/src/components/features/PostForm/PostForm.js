@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Editor from 'react-medium-editor';
 import 'medium-editor/dist/css/medium-editor.css';
 import 'medium-editor/dist/css/themes/default.css';
-
+import { getRequest, addPostRequest, resetRequestStore  } from '../../../redux/postsRedux';
 import TextField from '../../common/TextField/TextField';
 import SectionTitle from '../../common/SectionTitle/SectionTitle';
 import Button from '../../common/Button/Button';
@@ -17,11 +17,16 @@ class PostForm extends React.Component {
 
     state = {
         post: {
-        title: '',
-        author: '',
-        content: ''
+            title: '',
+            author: '',
+            content: ''
         }
     }
+
+    componentDidMount() {
+        this.props.resetRequestStore();
+    }
+    
 
     handleChange = (e) => {
         const { post } = this.state;
@@ -88,4 +93,13 @@ PostForm.propTypes = {
     addPost: PropTypes.func.isRequired,
 };
 
-export default PostForm;
+const mapStateToProps = state => ({
+    request: getRequest(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+    addPost: (post) => dispatch(addPostRequest(post)),
+    resetRequestStore: () => dispatch(resetRequestStore()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

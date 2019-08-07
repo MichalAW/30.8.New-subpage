@@ -28,6 +28,13 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const resetRequest = () => ({ type: RESET_REQUEST });
 
 /* THUNKS */
+
+export const resetRequestStore = () => {
+    return async dispatch => {
+        dispatch(resetRequest());
+    };
+};
+
 export const loadPostsRequest = () => {
     return async dispatch => {
         dispatch(clearPosts());
