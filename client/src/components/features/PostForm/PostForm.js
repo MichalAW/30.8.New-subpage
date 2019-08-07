@@ -12,7 +12,7 @@ import Alert from '../../common/Alert/Alert';
 import Spinner from '../../common/Spinner/Spinner';
 
 import './PostForm.scss';
-
+// Podpiąć PostForm do storage
 class PostForm extends React.Component {
 
     state = {

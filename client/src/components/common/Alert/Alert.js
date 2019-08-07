@@ -33,8 +33,8 @@ const Alert = ({ variant = '', children, ...otherProps }) => {
 };
 
 Alert.propTypes = {
-  variant: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+	variant: PropTypes.string.isRequired,
+	children: PropTypes.string.isRequired,
 };
 
 export default Alert;

@@ -12,20 +12,20 @@ import AddPost from './components/posts/AddPost';
 import SinglePost from './components/posts/SinglePostContainer';
 class App extends React.Component {
 
-  render() {
-    return (
-      <MainLayout>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/posts" exact component={Posts}/>
-          <Route path="/posts" exact component={AddPost}/>
-          <Route path="/posts/:id" exact component={SinglePost}/>
-          <Route path="/contact" exact component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
-      </MainLayout>
-    );
-  }
+  	render() {
+    	return (
+			<MainLayout>
+				<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/posts" exact component={Posts}/>
+				<Route path="/posts/new" exact component={AddPost}/>
+				<Route path="/posts/:id" exact component={SinglePost}/>
+				<Route path="/contact" exact component={Contact} />
+				<Route component={NotFound} />
+				</Switch>
+			</MainLayout>
+		);
+	}
 }
 
 export default App;
