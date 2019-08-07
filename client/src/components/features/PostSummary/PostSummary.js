@@ -8,12 +8,12 @@ import CutText from '../../../utils/CutText/CutText';
 import { Link } from 'react-router-dom';
 import PostsList from '../PostsList/PostsList';
 
-export default ({ id, title, content },maxLength) => { 
+export default ({ author, id, title, content },maxLength) => { 
     const test =  () => { if (content.length < 1) return 'Error';
         if (content.length <= maxLength) return content;
         return content.substr(0, content.lastIndexOf(' ', maxLength)) + '...';
     }
-    
+
     return (
     <article className="post-summary">
         <SmallTitle>{title}</SmallTitle>
@@ -21,6 +21,7 @@ export default ({ id, title, content },maxLength) => {
         <Button variant="primary">
             <Link to={`/posts/${id}`}>Read More</Link> 
         </Button>
+        <p>Author: {author}</p>
     </article>
 )};
 

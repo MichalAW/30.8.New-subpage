@@ -20,12 +20,12 @@ class Posts extends React.Component {
             </div>
         );
     }
-
 };
 
 Posts.propTypes = {
     posts: PropTypes.arrayOf(
         PropTypes.shape({
+            author: PropTypes.string.isRequired,
             id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             content: PropTypes.string.isRequired,

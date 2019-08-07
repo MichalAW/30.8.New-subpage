@@ -7,30 +7,29 @@ import './Alert.scss';
 
 const Alert = ({ variant = '', children, ...otherProps }) => {
 
-  const icon = () => {
-    switch(variant) {
-      case 'info':
-        return <MdInfoOutline />
-      case 'success':
-        return <MdDone />
-      case 'warning':
-        return <MdErrorOutline />
-      case 'error':
-        return <MdErrorOutline />
-      default:
-        return <MdInfoOutline />
-    }
-  };
+	const icon = () => {
+		switch(variant) {
+		case 'info':
+			return <MdInfoOutline />
+		case 'success':
+			return <MdDone />
+		case 'warning':
+			return <MdErrorOutline />
+		case 'error':
+			return <MdErrorOutline />
+		default:
+			return <MdInfoOutline />
+		}
+	};
 
-  return (
-    <Animated animationIn="fadeIn" animationOut="fadeOut">
-      <div {...otherProps} className={`alert alert--${variant}`}>
-        {icon()}
-        <span className="alert__desc">{children}</span>
-      </div>
-    </Animated>
-  )
-
+	return (
+		<Animated animationIn="fadeIn" animationOut="fadeOut">
+		<div {...otherProps} className={`alert alert--${variant}`}>
+			{icon()}
+			<span className="alert__desc">{children}</span>
+		</div>
+		</Animated>
+	)
 };
 
 Alert.propTypes = {
