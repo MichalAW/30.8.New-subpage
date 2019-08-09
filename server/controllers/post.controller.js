@@ -6,7 +6,7 @@ const addPost = async function (req, res) {
 
     try {
         const { title, author, content } = req.body;
-        const sanitizeBody = (req.body.sanitize())
+        const sanitizeBody = (req.body)
         let newPost = new Post(req.body);
         newPost.id = uuid();
 
