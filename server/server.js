@@ -1,4 +1,5 @@
 const express = require('express');
+const sanitize = require('mongo-sanitize');
 const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
@@ -17,7 +18,10 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 app.use('/api', postRoutes);
-
+app.use((req, res, next) => {
+    sanitize(req.body);
+    next();
+});
 // connects our back end code with the database
 mongoose.connect(config.DB, {
     useNewUrlParser: true
