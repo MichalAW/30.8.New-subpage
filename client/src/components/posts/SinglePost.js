@@ -22,8 +22,8 @@ export default class SinglePost extends Component {
                     }
                 </HtmlBox>
                 <FacebookProvider appId="511090986363092">
-                    <Comments href={`BASE_URL}`}/>
-                        <ShareButton href={`BASE_URL}`}>
+                    <Comments href={BASE_URL}/>
+                        <ShareButton href={BASE_URL}>
                             Share
                         </ShareButton>
                 </FacebookProvider>
