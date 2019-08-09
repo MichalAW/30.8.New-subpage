@@ -24,6 +24,7 @@
 		"mongo-sanitize": "^1.0.1",
 		"mongoose": "5.5.11",
 		"nodemon": "1.19.1",
+		"react-facebook": "8.0.4",
 		"react-router-dom": "5.0.0",
 		"yarn": "^1.17.3"
 	}
