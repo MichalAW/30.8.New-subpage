@@ -35,4 +35,28 @@ const getPostById = async (req, res) => {
     }
 }
 
-module.exports = {getPosts, getPostById, addPost};
+
+// get posts by range
+const getPostsByRange = async function (req, res) {
+
+    try {
+        let { startAt, limit } = req.params;
+
+        startAt = parseInt(startAt);
+        limit = parseInt(limit);
+
+        const posts = await Post.find().skip(startAt).limit(limit);
+        const amount = await Post.countDocuments();
+
+        res.status(200).json({
+        posts,
+        amount,
+        });
+
+    } catch(err) {
+        res.status(500).json(err);
+    }
+
+};
+
+module.exports = {getPosts, getPostById, addPost, getPostsByRange};
