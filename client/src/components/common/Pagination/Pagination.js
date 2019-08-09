@@ -10,7 +10,7 @@ class Pagination extends React.Component {
     }
 
     changePage = (newPage) => {
-        const { onChangePage } = this.props;
+        const { onPageChange } = this.props;
 
         this.setState({ presentPage: newPage });
         onPageChange(newPage);
@@ -20,7 +20,7 @@ class Pagination extends React.Component {
         const { pages, onPageChange } = this.props;
         const { presentPage } = this.state;
         const { changePage } = this;
-
+        console.log(pages)
         return (
             <div className="pagination">
                 <ul className="pagination__list">
@@ -31,6 +31,7 @@ class Pagination extends React.Component {
                         className={`pagination__list__item${((page) === presentPage) ? ' pagination__list__item--active' : ''}`}>
                         {page}
                     </li>
+                    // <li> < </li>
                     )}
                 </ul>
             </div>
