@@ -1,4 +1,4 @@
 module.exports = {
     PORT: 8000,
-    DB: 'mongodb://localhost:27017/mernapp',
+    DB: 'mongo "mongodb+srv://cluster0-c1znw.mongodb.net/test" --username <john-doe>',
 };
