@@ -80,14 +80,13 @@ export const addPostRequest = (post) => {
     };
 };
 
-export const loadPostsByPageRequest = (page) => {
+export const loadPostsByPageRequest = (page, postsPerPage) => {
     return async dispatch => {
 
         dispatch(startRequest());
         try {
 
-            const postsPerPage = 10;
-
+            
             const startAt = (page - 1) * postsPerPage;
             const limit = postsPerPage;
 
@@ -121,8 +120,8 @@ const initialState = {
         success: null,
     },
     amount: 0,
-    postsPerPage: 0,
-    presentPage: 0,
+    postsPerPage: 1,
+    presentPage: 1,
 };
 
 /* REDUCER */

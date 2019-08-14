@@ -3,27 +3,37 @@ import { PropTypes } from 'prop-types';
 import Spinner from '../../common/Spinner/Spinner';
 import PostsList from '../PostsList/PostsList';
 import Pagination from '../../common/Pagination/Pagination';
-class Posts extends React.Component {
 
-   componentDidMount() {
+class Posts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.initialPage = this.props.initialPage || 1;
+        this.postsPerPage = this.props.postsPerPage || 10;
+        this.pagination = this.props.pagination === undefined ? true: this.props.pagination;
+    }
+
+    componentDidMount() {
         const { loadPostsByPage } = this.props;
-        loadPostsByPage(1);
+        loadPostsByPage(this.props.initialPage, this.postsPerPage);
     }
 
     loadPostsPage = (page) => {
         const { loadPostsByPage } = this.props;
-        loadPostsByPage(page);
+        loadPostsByPage(page, this.postsPerPage);
     }
+
 
     render() {
         const { posts, request, pages } = this.props;
         const { loadPostsPage } = this;
-        console.log(pages)
+
         return (
             <div>
                 {request.pending && <Spinner/>}
                 <PostsList posts={posts} />
-                <Pagination pages={pages} onPageChange={loadPostsPage}/>;
+                {this.pagination &&
+                    <Pagination pages={pages} onPageChange={loadPostsPage}/>
+                }
             </div>
         );
     }
