@@ -40,6 +40,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
-app.listen(config.PORT, function () {
+app.listen(process.env.PORT || config.PORT, function () {
     console.log('Server is running on Port:', config.PORT);
 });
