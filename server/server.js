@@ -1,10 +1,11 @@
 const express = require('express');
+const sanitize = require('mongo-sanitize');
 const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
 const loadTestData = require('./testData');
 const helmet = require('helmet');
-
+const path = require('path');
 const app = express();
 
 // import routes
@@ -17,7 +18,12 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 app.use('/api', postRoutes);
-
+app.use((req, res, next) => {
+    sanitize(req.body);
+    next();
+});
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '/../client/build')));
 // connects our back end code with the database
 mongoose.connect(config.DB, {
     useNewUrlParser: true
@@ -29,6 +35,10 @@ db.once('open', () => {
     loadTestData();
 });
 db.on('error', (err) => console.log('Error ' + err));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+});
 
 app.listen(config.PORT, function () {
     console.log('Server is running on Port:', config.PORT);
