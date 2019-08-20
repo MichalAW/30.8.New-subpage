@@ -7,3 +7,5 @@
 
 4.Tool that will be perfect for our needs. It's MongoDB with the package Mongoose.
 
+
+Run app by clickin link --> https://stack-mern-app.herokuapp.com/
