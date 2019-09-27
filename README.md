@@ -1,4 +1,4 @@
-# 30.8.New-subpage
+# 30.8.Stack-Mern-Blog
 1.First of all, the application should keep the data also after the server restart. With us, we lose everything every time we finish the process, and after reboot we start again, with the same rigid set of posts. 
 
 2.Secondly, the mere modifications, searches or additions of data, while working on an ordinary array, all this can be very onerous in the long run. 
