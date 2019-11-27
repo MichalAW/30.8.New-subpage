@@ -7,5 +7,12 @@
 
 4.Tool that will be perfect for our needs. It's MongoDB with the package Mongoose.
 
+# Scripts 
+
+"start": "cd client && yarn build && cd .. && cd server && yarn start",
+"start:server": "cd server && yarn start",
+"install:client": "cd client && npm install",
+"install:server": "cd server && npm install",
+"postinstall": "run-p install:*"
 
 Run app by clicking link --> https://stack-mern-app.herokuapp.com/
