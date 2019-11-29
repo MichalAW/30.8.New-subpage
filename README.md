@@ -16,3 +16,5 @@
 "postinstall": "run-p install:*"
 
 Run app by clicking link --> https://stack-mern-app.herokuapp.com/
+
+# in uptade (delete the post)
